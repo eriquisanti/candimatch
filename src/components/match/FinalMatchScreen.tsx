@@ -2,7 +2,9 @@
 
 import { useMatchReveal } from "@/hooks/useMatchReveal";
 import type { CandidateMatch } from "@/types";
+import type { AnsweredProposal } from "@/utils/answerHistory";
 import type { CompatibilityItem } from "@/utils/calculateMatch";
+import { AnswerHistory } from "./AnswerHistory";
 import { CompatibilityBreakdown } from "./CompatibilityBreakdown";
 import { MatchReveal } from "./MatchReveal";
 import { MatchScreenShell } from "./MatchScreenShell";
@@ -13,10 +15,17 @@ interface FinalMatchScreenProps {
 
   reachedThreshold: boolean;
   breakdown: CompatibilityItem[];
+  answerHistory: AnsweredProposal[];
   onRestart: () => void;
 }
 
-export function FinalMatchScreen({ match, reachedThreshold, breakdown, onRestart }: FinalMatchScreenProps) {
+export function FinalMatchScreen({
+  match,
+  reachedThreshold,
+  breakdown,
+  answerHistory,
+  onRestart,
+}: FinalMatchScreenProps) {
   const { stage, isRevealing, skip } = useMatchReveal(match.candidate.id);
 
   return (
@@ -48,6 +57,7 @@ export function FinalMatchScreen({ match, reachedThreshold, breakdown, onRestart
         }`}
       >
         <CompatibilityBreakdown items={breakdown} />
+        <AnswerHistory items={answerHistory} matchedCandidateId={match.candidate.id} />
       </div>
     </MatchScreenShell>
   );

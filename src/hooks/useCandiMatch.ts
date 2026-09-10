@@ -6,6 +6,7 @@ import { fetchCandidates } from "@/services/candidates";
 import { fetchProposals } from "@/services/proposals";
 import type { Candidate, Proposal, UserAnswers } from "@/types";
 import { calculateAllMatches, getBestMatch, getCompatibilityBreakdown, meetsMatchThreshold } from "@/utils/calculateMatch";
+import { getAnswerHistory } from "@/utils/answerHistory";
 import { getCandidateColors, getInitials } from "@/utils/candidateDisplay";
 import {
   decideNextPhase,
@@ -162,6 +163,11 @@ export function useCandiMatch() {
     return getCompatibilityBreakdown(answers, finalMatch.candidate, orderedProposals, 6);
   }, [answers, finalMatch, orderedProposals]);
 
+  const answerHistory = useMemo(
+    () => getAnswerHistory(answeredOrder, answers, orderedProposals, candidates),
+    [answeredOrder, answers, orderedProposals, candidates]
+  );
+
   const canContinue = hasMoreProposals && totalAnswered < MAX_QUESTIONS_FOR_MATCH;
 
   const bestMatchReachedThreshold = bestMatch
@@ -189,6 +195,7 @@ export function useCandiMatch() {
     finalMatch,
     finalMatchReachedThreshold,
     breakdown,
+    answerHistory,
     start,
     answer,
     continueDiscovering,

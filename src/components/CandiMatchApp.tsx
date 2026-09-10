@@ -48,6 +48,7 @@ export function CandiMatchApp() {
             match={candi.finalMatch}
             reachedThreshold={candi.finalMatchReachedThreshold}
             breakdown={candi.breakdown}
+            answerHistory={candi.answerHistory}
             onRestart={candi.restart}
           />
         )}
