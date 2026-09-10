@@ -1,0 +1,29 @@
+
+export const PROPOSAL_CATEGORIES = [
+
+  "ECONOMIA",
+  "EDUCACAO",
+  "SAUDE",
+  "SEGURANCA",
+  "MEIO_AMBIENTE",
+  "TRABALHO",
+  "IMPOSTOS",
+  "INFRAESTRUTURA",
+
+  "ADMINISTRACAO_PUBLICA",
+  "AGRICULTURA",
+  "ASSISTENCIA_SOCIAL",
+  "CIENCIA_TECNOLOGIA",
+  "DEFESA",
+  "EMPREGO",
+  "ENERGIA",
+  "HABITACAO",
+  "JUSTICA",
+  "OUTROS",
+  "POLITICA",
+  "PREVIDENCIA",
+  "TRANSPORTE",
+  "TRIBUTACAO",
+] as const;
+
+export type ProposalCategoryCode = (typeof PROPOSAL_CATEGORIES)[number];
